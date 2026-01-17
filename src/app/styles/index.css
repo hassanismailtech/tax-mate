@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+:root {
+  --color-background: 0, 0%, 7%;
+
+  --text-primary: 0, 0%, 100%;
+}
