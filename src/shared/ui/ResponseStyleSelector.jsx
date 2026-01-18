@@ -1,0 +1,48 @@
+import { useState } from "react";
+
+const responseStyleArr = [
+  {
+    id: 1,
+    responseStyle: "Standard English",
+  },
+  {
+    id: 2,
+    responseStyle: "Eli5",
+  },
+  {
+    id: 3,
+    responseStyle: "Pidgin",
+  },
+  {
+    id: 4,
+    responseStyle: "Hybrid",
+  },
+];
+
+export default function ResponseStyleSelector() {
+  const [response, setResponse] = useState(null);
+
+  const handleClick = (index) => {
+    setResponse(responseStyleArr[index]);
+  };
+
+  return (
+    <ul className="flex flex-col gap-4">
+      {responseStyleArr.map((value, index) => {
+        return (
+          <li
+            key={value.id}
+            onClick={() => handleClick(index)}
+            className={`flex items-center justify-between bg-[hsl(var(--color-primary))] py-2 px-4 rounded-xl ring-2 hover:ring-[hsl(var(--color-accent))] ${response?.id === value.id ? "ring-[hsl(var(--color-accent))]" : "ring-[hsl(var(--color-secondary))]"} cursor-pointer`}
+          >
+            {value.responseStyle}
+
+            <span
+              className={`p-4 rounded-full ${response?.id === value.id ? "bg-[hsl(var(--color-accent))]" : ""}`}
+            ></span>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
