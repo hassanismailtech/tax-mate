@@ -48,7 +48,7 @@ export default function UserSetup() {
 
         <ResponseStyleSelector />
 
-        <footer className="flex flex-col items-center">
+        <footer className="flex flex-col gap-4 items-center">
           <p className="text-md text-[hsl(var(--color-secondary))]">
             You can change this anytime during our chat
           </p>
