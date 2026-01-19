@@ -12,13 +12,15 @@ export default function UserSetup() {
 
   return (
     <main className="p-4 flex flex-col gap-6">
-      <button
-        className="text-[hsl(var(--color-accent))] cursor-pointer"
-        onClick={handleclick}
-        aria-label="Go back"
-      >
-        <ArrowLeft />
-      </button>
+      <header>
+        <button
+          className="text-[hsl(var(--color-accent))] cursor-pointer"
+          onClick={handleclick}
+          aria-label="Go back"
+        >
+          <ArrowLeft />
+        </button>
+      </header>
 
       <section className="flex flex-col gap-6">
         <header>
@@ -44,6 +46,12 @@ export default function UserSetup() {
         </header>
 
         <ResponseStyleSelector />
+
+        <footer className="flex flex-col items-center">
+          <p className="text-md text-[hsl(var(--color-secondary))]">
+            You can change this anytime during our chat
+          </p>
+        </footer>
       </section>
     </main>
   );
