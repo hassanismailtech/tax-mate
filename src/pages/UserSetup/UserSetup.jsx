@@ -2,6 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import EmploymentTypeSelector from "../../shared/ui/EmploymentTypeSelector";
 import { useNavigate } from "react-router";
 import ResponseStyleSelector from "../../shared/ui/ResponseStyleSelector";
+import StartChatButton from "../../shared/ui/StartChatButton";
 
 export default function UserSetup() {
   const navigate = useNavigate();
@@ -51,6 +52,8 @@ export default function UserSetup() {
           <p className="text-md text-[hsl(var(--color-secondary))]">
             You can change this anytime during our chat
           </p>
+
+          <StartChatButton />
         </footer>
       </section>
     </main>
