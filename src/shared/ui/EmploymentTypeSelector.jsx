@@ -36,7 +36,7 @@ export default function EmploymentTypeSelector() {
   };
 
   return (
-    <ul className="flex flex-col gap-4">
+    <ul className="grid grid-cols-[repeat(auto-fit,minmax(480px,1fr))] gap-4">
       {employmentTypeArr.map((value, index) => {
         return (
           <li
