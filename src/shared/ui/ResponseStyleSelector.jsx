@@ -33,7 +33,7 @@ export default function ResponseStyleSelector() {
           <li
             key={value.id}
             onClick={() => handleClick(index)}
-            className={`flex items-center justify-between bg-[hsl(var(--color-primary))] py-2 px-4 rounded-xl ring-2 hover:ring-[hsl(var(--color-accent))] ${response?.id === value.id ? "ring-[hsl(var(--color-accent))]" : "ring-[hsl(var(--color-secondary))]"} cursor-pointer`}
+            className={`flex items-center justify-between bg-[hsl(var(--color-primary))] py-2 px-4 md:py-4 rounded-xl ring-2 hover:ring-[hsl(var(--color-accent))] ${response?.id === value.id ? "ring-[hsl(var(--color-accent))]" : "ring-[hsl(var(--color-secondary))]"} cursor-pointer`}
           >
             {value.responseStyle}
 
