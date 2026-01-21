@@ -7,8 +7,8 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="flex justify-center md:p-8">
-      <div className="flex-1 flex justify-between items-center p-4 text-[hsl(var(--text-primary))] md:bg-white md:text-black md:px-6 md:rounded-full md:max-w-4xl">
+    <header className="flex justify-center md:py-8 md:px-4">
+      <div className="flex-1 flex justify-between items-center p-4 text-[hsl(var(--text-primary))] md:bg-white md:text-black md:px-6 md:rounded-full md:max-w-6xl">
         <div className="flex items-center gap-2">
           <img src={Logo} alt="App logo" />
           <h1 className="font-bold text-md md:text-2xl">TaxSense</h1>

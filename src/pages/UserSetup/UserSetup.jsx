@@ -12,7 +12,7 @@ export default function UserSetup() {
   };
 
   return (
-    <main className="p-4 flex flex-col gap-6">
+    <main className="w-full p-4 flex flex-col gap-6 md:mx-auto md:max-w-6xl">
       <header>
         <button
           className="text-[hsl(var(--color-accent))] cursor-pointer"
