@@ -11,7 +11,7 @@ export default function AiChatPage() {
 
   return (
     <main className="flex-1 w-full border-t-2 border-solid border-[hsl(var(--color-primary))] flex flex-col gap-4">
-      <header className="p-4 md:mx-auto md:max-w-6xl">
+      <header className="p-4 md:mx-auto md:max-w-6xl w-full">
         <button
           className="text-[hsl(var(--color-accent))] cursor-pointer"
           onClick={handleclick}
