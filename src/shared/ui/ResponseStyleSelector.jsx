@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const responseStyleArr = [
   {
     id: 1,
@@ -19,9 +17,7 @@ const responseStyleArr = [
   },
 ];
 
-export default function ResponseStyleSelector() {
-  const [response, setResponse] = useState(null);
-
+export default function ResponseStyleSelector({ response, setResponse }) {
   const handleClick = (index) => {
     setResponse(responseStyleArr[index]);
   };

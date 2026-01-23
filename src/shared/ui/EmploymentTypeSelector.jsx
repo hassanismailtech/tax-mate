@@ -1,5 +1,4 @@
 import { BriefcaseBusiness, Store, Laptop, GraduationCap } from "lucide-react";
-import { useState } from "react";
 
 const employmentTypeArr = [
   {
@@ -28,9 +27,7 @@ const employmentTypeArr = [
   },
 ];
 
-export default function EmploymentTypeSelector() {
-  const [userType, setUserType] = useState(null);
-
+export default function EmploymentTypeSelector({ userType, setUserType }) {
   const handleSelectType = (index) => {
     setUserType(employmentTypeArr[index]);
   };
