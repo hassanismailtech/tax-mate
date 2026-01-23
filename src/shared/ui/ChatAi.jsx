@@ -37,13 +37,12 @@ export default function ChatAi() {
   const [input, setInput] = useState("");
   const [hasSentMessage, setHasSentMessage] = useState(false);
 
-  const handleSend = (e) => {
-    e.preventDefault();
-    if (!input.trim()) return;
+  const handleSend = (message) => {
+    if (!message.trim()) return;
 
     setMessages((prev) => [
       ...prev,
-      { id: Date.now(), role: "user", content: input, image: profilePic },
+      { id: Date.now(), role: "user", content: message, image: profilePic },
     ]);
 
     setInput("");
@@ -109,7 +108,10 @@ export default function ChatAi() {
             <ul className="grid md:grid-cols-[repeat(auto-fit,minmax(480px,1fr))] gap-4">
               {topicsArr.map((value) => {
                 return (
-                  <li className="bg-[hsl(var(--button-secondary))] ring-1 ring-[hsl(var(--color-secondary))] rounded-xl py-2 px-4 md:p-4 w-fit md:w-auto cursor-pointer">
+                  <li
+                    onClick={() => handleSend(value.topic)}
+                    className="bg-[hsl(var(--button-secondary))] ring-1 ring-[hsl(var(--color-secondary))] rounded-xl py-2 px-4 md:p-4 w-fit md:w-auto cursor-pointer"
+                  >
                     {value.topic}
                   </li>
                 );
@@ -124,7 +126,10 @@ export default function ChatAi() {
           <ul className="flex gap-6 flex-wrap max-w-6xl mx-auto w-full ">
             {promptArr.map((value) => {
               return (
-                <li className="ring-1 ring-[hsl(var(--color-secondary))] bg-[hsl(var(--color-primary))] w-fit px-4 py-2 rounded-full cursor-pointer">
+                <li
+                  onClick={() => handleSend(value.prompt)}
+                  className="ring-1 ring-[hsl(var(--color-secondary))] bg-[hsl(var(--color-primary))] w-fit px-4 py-2 rounded-full cursor-pointer"
+                >
                   {value.prompt}
                 </li>
               );
@@ -134,7 +139,10 @@ export default function ChatAi() {
 
         <form
           className="flex justify-between gap-4 max-w-6xl mx-auto w-full"
-          onSubmit={handleSend}
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSend(input);
+          }}
         >
           <div className="flex-1 bg-[hsl(var(--color-primary))] flex items-center justify-between gap-4 p-4 rounded-full ring-1 ring-[hsl(var(--color-secondary))]">
             <label className="flex-1">
