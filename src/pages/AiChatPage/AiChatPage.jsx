@@ -10,8 +10,8 @@ export default function AiChatPage() {
   };
 
   return (
-    <main className="w-full border-t-2 border-solid border-[hsl(var(--color-primary))] p-4 flex flex-col gap-4 md:mx-auto md:max-w-6xl">
-      <header>
+    <main className="flex-1 w-full border-t-2 border-solid border-[hsl(var(--color-primary))] flex flex-col gap-4">
+      <header className="p-4 md:mx-auto md:max-w-6xl">
         <button
           className="text-[hsl(var(--color-accent))] cursor-pointer"
           onClick={handleclick}
@@ -21,7 +21,7 @@ export default function AiChatPage() {
         </button>
       </header>
 
-      <section>
+      <section className="flex-1 flex flex-col">
         <ChatAi />
       </section>
     </main>
