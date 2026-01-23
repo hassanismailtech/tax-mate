@@ -66,10 +66,10 @@ export default function ChatAi() {
           <h2 className="text-lg text-[hsl(var(--color-secondary))]">
             POPULAR TOPICS
           </h2>
-          <ul className="flex flex-col gap-4">
+          <ul className="grid md:grid-cols-[repeat(auto-fit,minmax(480px,1fr))] gap-4">
             {topicsArr.map((value) => {
               return (
-                <li className="bg-[hsl(var(--button-secondary))] ring-1 ring-[hsl(var(--color-secondary))] rounded-xl py-2 px-4 w-fit cursor-pointer">
+                <li className="bg-[hsl(var(--button-secondary))] ring-1 ring-[hsl(var(--color-secondary))] rounded-xl py-2 px-4 md:p-4 w-fit md:w-auto cursor-pointer">
                   {value.topic}
                 </li>
               );
