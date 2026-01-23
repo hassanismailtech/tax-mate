@@ -1,4 +1,3 @@
-import { useState } from "react";
 import profilePic from "../../shared/assets/images/profile-pic.svg";
 import {
   History,
@@ -79,8 +78,8 @@ export default function ChatAi() {
         </div>
       </div>
 
-      <div className="sticky bottom-0 bg-[hsl(var(--color-primary))] border-t-2 border-solid border-[hsl(var(--color-primary))] p-4 flex flex-col gap-4">
-        <ul className="flex gap-6 flex-wrap">
+      <div className="sticky bottom-0 bg-[hsl(var(--color-primary))] border-t-2 border-solid border-[hsl(var(--color-primary))] p-4 md:py-10 flex flex-col gap-4 md:gap-8">
+        <ul className="flex gap-6 flex-wrap max-w-6xl mx-auto w-full ">
           {promptArr.map((value) => {
             return (
               <li className="ring-1 ring-[hsl(var(--color-secondary))] bg-[hsl(var(--color-primary))] w-fit px-4 py-2 rounded-full cursor-pointer">
@@ -90,16 +89,16 @@ export default function ChatAi() {
           })}
         </ul>
 
-        <form className="flex justify-between gap-4">
+        <form className="flex justify-between gap-4 max-w-6xl mx-auto w-full">
           <div className="flex-1 bg-[hsl(var(--color-primary))] flex items-center justify-between gap-4 p-4 rounded-full ring-1 ring-[hsl(var(--color-secondary))]">
-            <label>
+            <label className="flex-1">
               <input
                 placeholder="Ask me anything about taxes..."
                 className="outline-hidden w-full min-w-0"
               />
             </label>
 
-            <button>
+            <button className="cursor-pointer">
               <Mic />
             </button>
           </div>
