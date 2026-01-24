@@ -5,7 +5,7 @@ const responseStyleArr = [
   },
   {
     id: 2,
-    responseStyle: "Eli5",
+    responseStyle: "Explain Like I am 5 (ELI5)",
   },
   {
     id: 3,

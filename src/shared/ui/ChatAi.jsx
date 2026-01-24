@@ -18,9 +18,9 @@ const topicsArr = [
 ];
 
 const promptArr = [
-  { id: 1, prompt: "Do i need to file?" },
+  { id: 1, prompt: "Do I need to file?" },
   { id: 2, prompt: "How does PAYE work?" },
-  { id: 3, prompt: "What should i do next?" },
+  { id: 3, prompt: "What should I do next?" },
 ];
 
 export default function ChatAi() {
