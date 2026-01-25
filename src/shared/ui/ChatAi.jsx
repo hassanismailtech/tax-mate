@@ -1,5 +1,7 @@
 import { useState } from "react";
 import profilePic from "../../shared/assets/images/profile-pic.svg";
+import { useSession } from "../../app/context/SessionContext";
+import { postChat } from "../api/client";
 import {
   History,
   Settings,
@@ -10,7 +12,9 @@ import {
   SendHorizontal,
 } from "lucide-react";
 
-const topicsArr = [
+import { getTopics } from "../api/client";
+
+const topicsDefault = [
   { id: 1, topic: "What taxes apply to me?" },
   { id: 2, topic: "What taxes don't apply to me?" },
   { id: 3, topic: "What changed in 2026?" },
@@ -36,6 +40,11 @@ export default function ChatAi() {
 
   const [input, setInput] = useState("");
   const [hasSentMessage, setHasSentMessage] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { sessionId, userType, responseStyle } = useSession();
+  const [topics, setTopics] = useState(topicsDefault);
+  const [error, setError] = useState(null);
+  const [lastUserMessage, setLastUserMessage] = useState(null);
 
   const handleSend = (message) => {
     if (!message.trim()) return;
@@ -47,7 +56,50 @@ export default function ChatAi() {
 
     setInput("");
     setHasSentMessage(true);
+    setLastUserMessage(message);
+
+    if (!sessionId) return;
+    const payload = {
+      message,
+      persona: userType?.employmentType || null,
+      mode: responseStyle?.key || null,
+    };
+    setLoading(true);
+    postChat(sessionId, payload)
+      .then((res) => {
+        const reply = res?.reply || (typeof res === "string" ? res : "");
+        setMessages((prev) => [
+          ...prev,
+          { id: Date.now() + 1, role: "ai", content: reply || "No reply", image: profilePic },
+        ]);
+        setError(null);
+      })
+      .catch(() => {
+        setMessages((prev) => [
+          ...prev,
+          { id: Date.now() + 1, role: "ai", content: "There was an error reaching the assistant.", image: profilePic },
+        ]);
+        setError("Unable to reach the assistant. Check connection or try again.");
+      })
+      .finally(() => setLoading(false));
   };
+
+  if (!hasSentMessage) {
+    if (topics === topicsDefault) {
+      getTopics()
+        .then((res) => {
+          const list = Array.isArray(res?.topics)
+            ? res.topics.map((t, i) => ({
+                id: i + 1,
+                topic: t.title || t.topic || "",
+                prompt: t.prompt || "",
+              }))
+            : topicsDefault;
+          setTopics(list);
+        })
+        .catch(() => {});
+    }
+  }
 
   return (
     <div className="relative flex flex-col h-screen">
@@ -61,6 +113,21 @@ export default function ChatAi() {
             <Settings />
           </button>
         </div>
+
+        {error && (
+          <div className="bg-[hsl(var(--button-secondary))] ring-1 ring-[hsl(var(--color-secondary))] rounded-xl p-4 flex justify-between items-center">
+            <span>{error}</span>
+            <button
+              className="bg-[hsl(var(--color-accent))] px-4 py-2 rounded-xl cursor-pointer"
+              onClick={() => {
+                setError(null);
+                if (lastUserMessage) handleSend(lastUserMessage);
+              }}
+            >
+              Retry
+            </button>
+          </div>
+        )}
 
         {messages.map((message) => {
           return (
@@ -106,7 +173,7 @@ export default function ChatAi() {
               POPULAR TOPICS
             </h2>
             <ul className="grid md:grid-cols-[repeat(auto-fit,minmax(480px,1fr))] gap-4">
-              {topicsArr.map((value) => {
+              {topics.map((value) => {
                 return (
                   <li
                     onClick={() => handleSend(value.topic)}
@@ -151,6 +218,7 @@ export default function ChatAi() {
                 className="outline-hidden w-full min-w-0"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
+                disabled={loading}
               />
             </label>
 
@@ -162,6 +230,7 @@ export default function ChatAi() {
           <button
             type="submit"
             className="bg-[hsl(var(--color-accent))] p-4 rounded-full cursor-pointer"
+            disabled={loading}
           >
             <SendHorizontal />
           </button>

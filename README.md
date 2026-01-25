@@ -79,7 +79,7 @@ The 2026 Nigerian tax reforms consolidated multiple laws into a single regime. W
 
 **Base URL**  
 ```
-https://TaxSense-backend.onrender.com
+https://taxsense-backend.onrender.com
 ```
 
 **Core Endpoint**
@@ -137,7 +137,7 @@ Runs at: `http://localhost:8000`
 
 ### Frontend `.env`
 ```env
-VITE_API_BASE_URL=https://TaxSense-backend.onrender.com
+VITE_API_BASE_URL=https://taxsense-backend.onrender.com
 ```
 
 ### Backend `.env`

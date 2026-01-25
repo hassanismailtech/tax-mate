@@ -1,13 +1,22 @@
 import { ArrowLeft } from "lucide-react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import ChatAi from "../../shared/ui/ChatAi";
+import { useSession } from "../../app/context/SessionContext";
 
 export default function AiChatPage() {
   const navigate = useNavigate();
+  const { sessionId, startSession, userType, responseStyle } = useSession();
 
   const handleclick = () => {
     navigate(-1);
   };
+
+  useEffect(() => {
+    if (!sessionId && userType && responseStyle) {
+      startSession().catch(() => {});
+    }
+  }, [sessionId, userType, responseStyle, startSession]);
 
   return (
     <main className="flex-1 w-full border-t-2 border-solid border-[hsl(var(--color-primary))] flex flex-col gap-4">

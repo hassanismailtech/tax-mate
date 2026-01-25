@@ -3,11 +3,10 @@ import EmploymentTypeSelector from "../../shared/ui/EmploymentTypeSelector";
 import { useNavigate } from "react-router";
 import ResponseStyleSelector from "../../shared/ui/ResponseStyleSelector";
 import StartChatButton from "../../shared/ui/StartChatButton";
-import { useState } from "react";
+import { useSession } from "../../app/context/SessionContext";
 
 export default function UserSetup() {
-  const [userType, setUserType] = useState(null);
-  const [response, setResponse] = useState(null);
+  const { userType, setUserType, responseStyle, setResponseStyle } = useSession();
 
   const navigate = useNavigate();
 
@@ -50,14 +49,14 @@ export default function UserSetup() {
           </p>
         </header>
 
-        <ResponseStyleSelector response={response} setResponse={setResponse} />
+        <ResponseStyleSelector response={responseStyle} setResponse={setResponseStyle} />
 
         <footer className="flex flex-col gap-4 items-center">
           <p className="text-md text-[hsl(var(--color-secondary))]">
             You can change this anytime during our chat
           </p>
 
-          {userType && response && <StartChatButton />}
+          {userType && responseStyle && <StartChatButton />}
         </footer>
       </section>
     </main>

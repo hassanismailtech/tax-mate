@@ -1,18 +1,22 @@
 const responseStyleArr = [
   {
     id: 1,
+    key: "standard",
     responseStyle: "Standard English",
   },
   {
     id: 2,
+    key: "eli5",
     responseStyle: "Explain Like I am 5 (ELI5)",
   },
   {
     id: 3,
+    key: "pidgin",
     responseStyle: "Pidgin",
   },
   {
     id: 4,
+    key: "hybrid",
     responseStyle: "Hybrid",
   },
 ];
